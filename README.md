@@ -1,7 +1,3 @@
-# Desafio_Tecnico_Backend-
-
-
-
 # Desafio Técnico Backend
 ​
 - Criar um microserviço para expor APIs de CRUD de livros
