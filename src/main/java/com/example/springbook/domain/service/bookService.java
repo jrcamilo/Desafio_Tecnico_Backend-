@@ -39,20 +39,41 @@ public class bookService implements bookRepository{
 
     @Override
     public Book save(Book book) {
-        // TODO Auto-generated method stub
-        return null;
+        // book.setId(ThreadLocalRandom.current().nextLong(3,10000));  
+        if(book.getSbn().matches("[0-9]+")){   
+        bookList.add(book);
+
+        }
+        else{
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST ,"Book SBN invalid.");
+
+        }
+
+        return book;
     }
 
     @Override
     public Book update(Book book) {
-        // TODO Auto-generated method stub
-        return null;
+
+        delete(book.getSbn());
+        save(book);
+
+        return book;
     }
 
     @Override
     public Book delete(String sbn) {
-        // TODO Auto-generated method stub
-        return null;
+
+        Book book = findBySbn(sbn);
+
+        try {
+            bookList.remove(book);
+                
+            } catch (Exception e) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST ," Invalid book.");
+            }
+
+        return book ;
     }
 
 }
